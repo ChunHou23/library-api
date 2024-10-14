@@ -5,12 +5,7 @@ import ab.interview.library_api.model.BookType;
 import ab.interview.library_api.model.dto.in.AddBookInDTO;
 import ab.interview.library_api.model.dto.out.BookOutDTO;
 import ab.interview.library_api.model.mapper.BookMapper;
-import ab.interview.library_api.model.mapper.BorrowRecordMapper;
-import ab.interview.library_api.model.mapper.BorrowerMapper;
 import ab.interview.library_api.service.BookService;
-import ab.interview.library_api.service.BookTypeService;
-import ab.interview.library_api.service.BorrowRecordService;
-import ab.interview.library_api.service.BorrowerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,14 +15,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Slf4j
 @Service
 public class BookBusiness {
-//    @Autowired
-//    private BookTypeService bookTypeService;
-
     @Autowired
     private BookService bookService;
 
@@ -41,6 +32,7 @@ public class BookBusiness {
                 throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Invalid Book Author / Title / ISBN Number");
             }
 
+//            TODO: for scalability: can categorise resources for searching | having a dynamic categorisation easier for implementation
 //            BookType bookType = bookTypeService.findBookById(addBookInDTO.getBookType());
 //            if (Objects.isNull(bookType)) {
 //                log.warn("[Invalid Book Type]: Unable to register new book");

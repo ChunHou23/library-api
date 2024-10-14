@@ -6,8 +6,6 @@ import ab.interview.library_api.model.dto.in.BorrowRecordInDTO;
 import ab.interview.library_api.model.dto.in.AddBookInDTO;
 import ab.interview.library_api.model.dto.out.BookOutDTO;
 import ab.interview.library_api.model.dto.out.BorrowRecordOutDTO;
-//import io.swagger.annotations.Api;
-//import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@Api(value = "book api")
 @RestController
 @RequestMapping("/book")
 public class BookController {
@@ -28,28 +25,24 @@ public class BookController {
     private BorrowBusiness borrowBusiness;
 
     @PostMapping("/add")
-//    @ApiOperation(value = "Register new book")
     public ResponseEntity<BookOutDTO> addBook(@RequestBody AddBookInDTO addBookInDTO) {
         BookOutDTO bookOutDTO = bookBusiness.addBook(addBookInDTO);
         return new ResponseEntity<>(bookOutDTO, HttpStatus.OK);
     }
 
     @PostMapping("/borrow")
-//    @ApiOperation(value = "Borrow Book")
     public ResponseEntity<BorrowRecordOutDTO> borrowBook(@RequestBody BorrowRecordInDTO borrowRecordInDTO) {
         BorrowRecordOutDTO borrowRecordOutDTO = borrowBusiness.borrowResource(borrowRecordInDTO);
         return new ResponseEntity<>(borrowRecordOutDTO, HttpStatus.OK);
     }
 
     @PostMapping("/return")
-//    @ApiOperation(value = "Return book")
     public ResponseEntity<BorrowRecordOutDTO> returnBook(@RequestBody BorrowRecordInDTO borrowRecordInDTO) {
         BorrowRecordOutDTO borrowRecordOutDTO = borrowBusiness.returnResource(borrowRecordInDTO);
         return new ResponseEntity<>(borrowRecordOutDTO, HttpStatus.OK);
     }
 
     @GetMapping("/all")
-//    @ApiOperation(value = "Get all books")
     public ResponseEntity<List<BookOutDTO>> getAllBook() {
         List<BookOutDTO> bookOutDTOList = bookBusiness.getAllBooks();
         return new ResponseEntity<>(bookOutDTOList, HttpStatus.OK);
